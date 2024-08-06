@@ -8,7 +8,7 @@ class GetFoodsInfoView(APIView):
 
     def get(self, request):
         queryset = FoodCategory.objects.filter(food__is_publish=True).distinct().values()
-        print(queryset)
+
         for cat in queryset:
             foods = Food.objects.filter(is_publish=True, category__name_ru=cat["name_ru"]).distinct()
             changed_foods = foods.values()
